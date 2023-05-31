@@ -5,7 +5,7 @@ body
 
 .container
     width: 100%
-    max-width: 1400px
+    max-width: 1100px
 
 
 header .fa
@@ -37,9 +37,14 @@ header .fa
 
     nav
         display: inline-flex
+        align-items: center
 
         @media screen and (max-width: 880px)
             display: none
+
+#hamburger-menu-button
+    @media screen and (min-width: 881px)
+        display: none
 
 
 html.dark
