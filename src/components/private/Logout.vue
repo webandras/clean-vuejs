@@ -3,7 +3,7 @@
     <div class="logout">
         <form @submit.prevent="onLogout">
             <button type="submit" class="logout-button button submit">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <font-awesome-icon :icon="['fas', 'sign-in-alt']" />
                 Logout
             </button>
         </form>
@@ -13,8 +13,10 @@
 
 <script>
 
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 export default {
     name: "Logout",
+    components: {FontAwesomeIcon},
     methods: {
         onLogout() {
             this.$emit('onLogout', true)

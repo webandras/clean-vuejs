@@ -2,7 +2,7 @@
   <div v-if="openAlert === true"
        class="panel relative" :class="[color !== '' ? panelClasses : '']">
     <button @click="hideAlert()" class="close-button fs-18 white-transparent topright">
-      <i class="fa fa-times" aria-hidden="true"></i>
+        <font-awesome-icon :icon="['fas', 'times']" />
     </button>
 
     <div class="h5 bold">{{ heading }}</div>

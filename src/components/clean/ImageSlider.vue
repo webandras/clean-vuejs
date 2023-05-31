@@ -29,10 +29,10 @@
     </div>
     <div class="slider-nav center section fs-18 text-white bottomleft">
       <div class="float-left hover-text-accent padding-0-5 large pointer" @click="switchSlide(-1)">
-        &#10094;
+          <font-awesome-icon :icon="['fas', 'chevron-left']" />
       </div>
       <div class="float-right hover-text-accent padding-0-5 large pointer" @click="switchSlide(1)">
-        &#10095;
+          <font-awesome-icon :icon="['fas', 'chevron-right']" />
       </div>
       <div class="margin-top-1 text-center slide-dots-bar">
         <span class="slide-dots border hover-white" @click="currentSlide(1)"></span>

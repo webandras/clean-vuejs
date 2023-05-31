@@ -42,6 +42,12 @@ router.beforeEach(async (to, from) => {
         // redirect the user to the login page
         return {name: 'Login'}
     }
+
+    // when logged in redirect from login page to home
+    if (isAuthenticated() && to.name === 'Login') {
+        // redirect the logged-in user to the home page
+        return {name: 'Home'}
+    }
 })
 
 export default router;

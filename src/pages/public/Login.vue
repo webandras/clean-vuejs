@@ -58,8 +58,8 @@ export default {
 
 
     mounted() {
-        this.username = '';
-        this.password = '';
+        this.username = 'h8328tjb8iy9';
+        this.password = '$%zq5V@l9UJT^)epGEBP6g1d';
         this.alertColor = '';
         this.alertHeading = '';
     },

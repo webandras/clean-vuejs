@@ -4,12 +4,12 @@
       <h1 class="h3">Section Banner</h1>
       <p>This is a description of this section</p>
       <div class="searchbar relative">
-        <input @keydown="searchByTitle('<?= BASE_URL ?>' + 'api/get/entries/')"
+        <input @keydown="searchByTitle('/api-url-here/')"
                v-model="searchTerm"
                @click="togglePanel" type="search"
                placeholder="Search in entries"/>
         <b class="left margin-left-0-5">
-          <i class="fa fa-search" aria-hidden="true"></i>
+            <font-awesome-icon :icon="['fas', 'search']" />
         </b>
       </div>
     </section>
@@ -18,13 +18,15 @@
       <div v-show="panelOpen === true" :class="{'show': panelOpen === true }"
            class="card white absolute padding-1 z-2 hide">
             <button @click="clearSearch"
-                  class="close-button large topright round-large-top-right">&times;</button>
+                  class="close-button large topright round-large-top-right">
+                <font-awesome-icon :icon="['fas', 'times']" />
+            </button>
         <h2 class="fs-16 margin-top-0" v-text="'Results (' + count + ')'"></h2>
         <div id="search-results">
           <template v-for="item in results">
             <div class="box round border border-default">
               <b>
-                <a :href="'<?= BASE_URL ?>' + 'entries/show/' + item.id" v-html="item.title"></a>
+                <a :href="'/item/url/' + item.id" v-html="item.title"></a>
               </b>
               <p class="fs-14" v-html="item.content.substr(0, 120) + '...'"></p>
             </div>

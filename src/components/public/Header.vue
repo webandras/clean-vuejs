@@ -12,25 +12,27 @@
 
             <div class="main-navigation">
 
+                <!-- DESKTOP MENU -->
                 <nav ref="mainMenu" id="main-menu">
                     <router-link class="nav-link" :to="{ name: 'Home' }">
-                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <font-awesome-icon :icon="['fas', 'home']" />
                         Home
                     </router-link>
 
                     <router-link class="nav-link" :to="{ name: 'Hello' }">
-                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <font-awesome-icon :icon="['fas', 'user']" />
                         Hello
                     </router-link>
 
                     <Logout v-if="userLoggedIn === true" @onLogout="onLogout"/>
 
                     <router-link v-else class="nav-link" :to="{ name: 'Login' }">
-                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <font-awesome-icon :icon="['fas', 'user']" />
                         Login
                     </router-link>
                 </nav>
 
+                <!-- DARK/LIGHT MODE SWITCHER -->
                 <button v-if="isDarkModeOn() === true"
                         class="pointer darkmode-toggle"
                         rel="button"
@@ -47,7 +49,7 @@
                 >🌒
                 </button>
 
-
+                <!-- HAMBURGER MENU -->
                 <div>
                     <button @click="toggleOffcanvasMenu"
                             id="hamburger-menu-button"
@@ -58,7 +60,7 @@
                             aria-expanded="false"
                     >
                         <span class="sr-only">Open main menu</span>
-                        <i :class="{ 'fa fa-times' : sidenav, 'fa fa-bars': !sidenav }" aria-hidden="true"></i>
+                        <font-awesome-icon :icon="sidenav ? 'fa-solid fa-times' : 'fa-solid fa-bars'" />
                     </button>
 
                     <div class="sidenav relative"
@@ -70,28 +72,31 @@
                         <a href="javascript:void(0)"
                            @click="closeOffcanvasMenu"
                            class="close-btn fs-18 absolute topright padding-0-5">
-                            <i class="fa fa-times" aria-hidden="true"></i>
+                            <font-awesome-icon :icon="['fas', 'times']" />
                         </a>
 
                         <div ref="mobileMenu" id="mobile-menu">
+
+                            <!-- MOBILE MENU -->
                             <nav id="main-menu">
                                 <router-link class="nav-link" :to="{ name: 'Home' }">
-                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                    <font-awesome-icon :icon="['fas', 'home']" />
                                     Home
                                 </router-link>
 
                                 <router-link class="nav-link" :to="{ name: 'Hello' }">
-                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                    <font-awesome-icon :icon="['fas', 'user']" />
                                     Hello
                                 </router-link>
 
                                 <Logout v-if="userLoggedIn === true" @onLogout="onLogout"/>
 
                                 <router-link v-else class="nav-link" :to="{ name: 'Login' }">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <font-awesome-icon :icon="['fas', 'user']" />
                                     Login
                                 </router-link>
                             </nav>
+
                         </div>
 
                     </div>

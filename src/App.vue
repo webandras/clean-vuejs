@@ -12,7 +12,7 @@
               title="Toggle table of content"
               @click="scrollToTop"
         >
-        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+        <font-awesome-icon :icon="['fas', 'chevron-up']" />
     </span>
 
         <Footer/>

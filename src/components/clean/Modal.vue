@@ -8,7 +8,9 @@
 
         <div class="box primary round-top">
           <button @click="closeModal"
-                class="close-button fs-18 primary topright round-top-right text-white">&times;</button>
+                class="close-button fs-18 primary topright round-top-right text-white">
+              <font-awesome-icon :icon="['fas', 'times']" />
+          </button>
           <h3 class="text-white">
 
             <slot name="header"></slot>
