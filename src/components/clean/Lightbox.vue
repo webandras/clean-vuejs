@@ -2,7 +2,7 @@
   <div>
     <div v-show="lightboxOpened === true" class="gallery-modal black" :class="{'show': lightboxOpened === true }">
 
-      <button class="text-white white-transparent fs-24 hover-text-grey-20 padding-0-5 topright pointer"
+      <button class="text-white margin-top-0 white-transparent fs-24 hover-text-grey-20 padding-0-5 topright pointer"
               title="Close Lightbox" @click="closeLightbox">&times;
       </button>
 

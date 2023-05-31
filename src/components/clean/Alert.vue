@@ -1,9 +1,9 @@
 <template>
   <div v-if="openAlert === true"
        class="panel relative" :class="[color !== '' ? panelClasses : '']">
-    <span @click="hideAlert()" class="close-button fs-18 white-transparent topright">
+    <button @click="hideAlert()" class="close-button fs-18 white-transparent topright">
       <i class="fa fa-times" aria-hidden="true"></i>
-    </span>
+    </button>
 
     <div class="h5 bold">{{ heading }}</div>
     <p class="margin-0">

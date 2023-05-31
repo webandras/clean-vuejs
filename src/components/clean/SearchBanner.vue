@@ -17,8 +17,8 @@
     <div class="search-results relative">
       <div v-show="panelOpen === true" :class="{'show': panelOpen === true }"
            class="card white absolute padding-1 z-2 hide">
-            <span @click="clearSearch"
-                  class="close-button large topright round-large-top-right">&times;</span>
+            <button @click="clearSearch"
+                  class="close-button large topright round-large-top-right">&times;</button>
         <h2 class="fs-16 margin-top-0" v-text="'Results (' + count + ')'"></h2>
         <div id="search-results">
           <template v-for="item in results">
