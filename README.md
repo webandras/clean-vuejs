@@ -1,5 +1,11 @@
 # clean-vue
 
+## BRANCHES
+
+- master: basic setup
+- decoupled-wp-test: WordPress REST API as backend with a JWT authentication
+Under development...
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
