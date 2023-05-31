@@ -1,12 +1,20 @@
 import {createRouter, createWebHistory} from "vue-router";
 import Home from "../pages/public/Home.vue";
 import Hello from "../pages/public/Hello.vue";
+import Login from "../pages/public/Login.vue";
+
+import {isAuthenticated, setState} from "../state/state";
 
 const routes = [
     {
         path: "/",
         name: "Home",
         component: Home,
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: Login,
     },
     {
         path: "/hello",
@@ -21,4 +29,19 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 });
+
+// Auth guard redirects
+router.beforeEach(async (to, from) => {
+    if (
+        // make sure the user is authenticated
+        !isAuthenticated() &&
+        // ❗️ Avoid an infinite redirect
+        to.name !== 'Login'
+    ) {
+        setState('message', 'You need to login to access this page.');
+        // redirect the user to the login page
+        return {name: 'Login'}
+    }
+})
+
 export default router;

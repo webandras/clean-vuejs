@@ -1,5 +1,9 @@
 <template>
-  <div class="template-content margin-top-1 margin-right-left-1 padding-1">
+  <div class="template-content">
+
+    <Alert v-if="message !== undefined" :color="'info'" :heading="''">
+      {{ message }}
+    </Alert>
 
     <SearchBanner></SearchBanner>
     <h1> Heading 1 </h1>
@@ -303,8 +307,8 @@
         <span class="large">Mike</span><br>
         <span>Web Designer</span>
 
-        <span onclick="this.parentElement.style.display='none'"
-              class="close-button white fs-18 float-right absolute right margin-right-0-5">&times;</span>
+        <button onclick="this.parentElement.style.display='none'"
+              class="close-button white fs-18 float-right absolute right margin-right-0-5">&times;</button>
       </li>
       <li class="hover-gray-20 relative">
         <img src="./../../assets/images/img_avatar5.png"
@@ -312,8 +316,8 @@
         <span class="large">Jill</span><br>
         <span>Support</span>
 
-        <span onclick="this.parentElement.style.display='none'"
-              class="close-button white fs-18 absolute right margin-right-0-5">&times;</span>
+        <button onclick="this.parentElement.style.display='none'"
+              class="close-button white fs-18 absolute right margin-right-0-5">&times;</button>
       </li>
       <li class="hover-gray-20 relative">
         <img src="./../../assets/images/img_avatar6.png"
@@ -321,8 +325,8 @@
         <span class="large">Jane</span><br>
         <span>Accountant</span>
 
-        <span onclick="this.parentElement.style.display='none'"
-              class="close-button white fs-18 float-right absolute right margin-right-0-5">&times;</span>
+        <button onclick="this.parentElement.style.display='none'"
+              class="close-button white fs-18 float-right absolute right margin-right-0-5">&times;</button>
       </li>
       <li class="hover-gray-20 relative">
         <img src="./../../assets/images/img_avatar3.png"
@@ -330,8 +334,8 @@
         <span class="large">Jack</span><br>
         <span>Advisor</span>
 
-        <span onclick="this.parentElement.style.display='none'"
-              class="close-button white fs-18 float-right absolute right margin-right-0-5">&times;</span>
+        <button onclick="this.parentElement.style.display='none'"
+              class="close-button white fs-18 float-right absolute right margin-right-0-5">&times;</button>
       </li>
     </ul>
     <div>
@@ -885,7 +889,6 @@
     <ImageSlider></ImageSlider>
 
 
-
     <hr>
 
     <h2>Lightbox</h2>
@@ -1055,7 +1058,7 @@
     <p>Use <a href="#">Clean.CSS Filters</a> to search for a specific element inside a list, table, dropdown,
       etc:</p>
 
-<Filter></Filter>
+    <Filter></Filter>
 
     <hr>
 
@@ -1144,7 +1147,7 @@
 
 <script>
 import {debounce} from "lodash";
-import darkmode from './../../plugins/darkmode';
+
 import Accordion from "../../components/clean/Accordion.vue";
 import Alert from "../../components/clean/Alert.vue";
 import Animate from "../../components/clean/Animate.vue";
@@ -1162,7 +1165,6 @@ import Tabs from "../../components/clean/Tabs.vue";
 
 export default {
   name: "Home",
-  inject: ['darkmode'],
   components: {
     Accordion,
     Alert,
@@ -1179,6 +1181,10 @@ export default {
     SearchBanner,
     Tabs,
   },
+
+  props: [
+    'message'
+  ],
 
   data() {
     return {
