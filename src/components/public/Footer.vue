@@ -19,22 +19,6 @@
 <script>
 export default {
   name: "Footer",
-  data() {
-    return {
-      scrollTop: 0,
-    }
-  },
-  methods: {
-    setScrollToTop() {
-      this.scrollTop = document.body.scrollTop;
-    },
-
-    scrollToTop() {
-      document.body.scrollTop = 0;
-
-    },
-
-  },
 }
 </script>
 
