@@ -1,15 +1,15 @@
 <template>
-  <div v-if="dropdown === 'mouseover'" class="dropdown" @mouseout="hideDropdown">
+  <div v-if="dropdown === 'mouseover'" class="dropdown" @mouseleave.self="hideDropdown" >
     <button @mouseover="toggleDropdown" class="black-button">
       Hover Me! <i class="fa fa-caret-down"></i>
     </button>
-    <div v-show="openDropdown === true" class="dropdown-content bar-block border">
+    <div v-show="openDropdown === true" @mouseleave.self="hideDropdown" class="dropdown-content bar-block border">
       <slot name="links"></slot>
     </div>
   </div>
   <div v-else class="dropdown" v-click-outside="hideDropdown">
     <button @click="toggleDropdown" class="black-button">
-      Hover Me! <i class="fa fa-caret-down"></i>
+      Click Me! <i class="fa fa-caret-down"></i>
     </button>
     <div v-show="openDropdown === true" class="dropdown-content bar-block border">
       <slot name="links"></slot>
