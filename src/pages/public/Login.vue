@@ -23,6 +23,7 @@
 <script>
 import axios from "axios";
 import {authStore} from "../../store/authStore";
+import {REST_URL} from "../../constants/constants";
 
 import Guest from "../../layout/Guest.vue";
 import Alert from "../../components/clean/Alert.vue";
@@ -45,10 +46,9 @@ export default {
         }
     },
 
-    props: {
-        message: {
-            type: String,
-            required: false,
+    computed: {
+        REST_URL: function() {
+            return REST_URL;
         }
     },
 
@@ -73,7 +73,7 @@ export default {
 
             axios({
                 method: "POST",
-                url: authStore.restUrl + 'jwt-auth/v1/token',
+                url: REST_URL + 'jwt-auth/v1/token',
                 data: JSON.stringify(credentials),
                 headers: {"Content-Type": "application/json"}
 
