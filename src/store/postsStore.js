@@ -78,7 +78,6 @@ export const postsStore = reactive({
 
     // Update existing post
     updatePost(post, id) {
-
         if (!id) {
             return false;
         }
@@ -100,12 +99,10 @@ export const postsStore = reactive({
                 this.setNotification();
                 this.getPosts();
                 this.post = null;
-                return true;
             })
             .catch(error => {
                 console.error(error);
                 this.setNotification('Failed to save the post!', 'danger');
-                return false;
             });
     },
 
@@ -128,13 +125,10 @@ export const postsStore = reactive({
                     this.setNotification('Deleted the post!');
                     this.getPosts();
                     this.post = null;
-                    return true;
-
                 })
                 .catch(error => {
                     console.error(error);
                     this.setNotification('Failed to delete the post!', 'danger');
-                    return false;
                 });
         }
     }

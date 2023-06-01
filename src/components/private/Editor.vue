@@ -106,7 +106,6 @@ export default {
 
                 // Clear the editor
                 this.initialize();
-                this.$emit('onCreateOrUpdatePost', true);
 
             } else {
                 // Update existing post
@@ -114,7 +113,6 @@ export default {
 
                 // Clear the editor
                 this.initialize();
-                this.$emit('onCreateOrUpdatePost', true);
             }
 
         },

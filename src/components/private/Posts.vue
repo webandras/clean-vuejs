@@ -15,11 +15,6 @@ export default {
     components: {
         Post,
     },
-    props: {
-        reload: {
-            required: false
-        }
-    },
     data() {
         return {
             postsStore,
