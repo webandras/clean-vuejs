@@ -30,28 +30,36 @@
     <div id="Nature" class="picture relative tabbed-image-gallery-item">
       <img src="/src/assets/images/img_nature_wide.jpg" alt="Nature">
       <button @click="hide($event)"
-            class="topright close-button fs-18 transparent text-white">&times;</button>
+            class="topright close-button fs-18 transparent text-white">
+          <font-awesome-icon :icon="['fas', 'times']" />
+      </button>
       <div class="bottomleft box padding-0-5 text-white black-transparent">Nature</div>
     </div>
 
     <div id="Snow" class="picture relative tabbed-image-gallery-item">
       <img src="/src/assets/images/img_snow_wide.jpg" alt="Snow">
       <button @click="hide($event)"
-            class="topright close-button fs-18 transparent text-white">&times;</button>
+            class="topright close-button fs-18 transparent text-white">
+          <font-awesome-icon :icon="['fas', 'times']" />
+      </button>
       <div class="bottomleft box padding-0-5 text-white black-transparent">Snow</div>
     </div>
 
     <div id="Mountains" class="picture relative tabbed-image-gallery-item">
       <img src="/src/assets/images/img_mountains_wide.jpg" alt="Mountains">
       <button @click="hide($event)"
-            class="topright close-button fs-18 transparent">&times;</button>
+            class="topright close-button fs-18 transparent">
+          <font-awesome-icon :icon="['fas', 'times']" />
+      </button>
       <div class="bottomleft box padding-0-5 text-white black-transparent">Mountains</div>
     </div>
 
     <div id="Lights" class="picture relative tabbed-image-gallery-item">
       <img src="/src/assets/images/img_lights_wide.jpg" alt="Lights">
       <button @click="hide($event)"
-            class="topright close-button fs-18 transparent text-white">&times;</button>
+            class="topright close-button fs-18 transparent text-white">
+          <font-awesome-icon :icon="['fas', 'times']" />
+      </button>
       <div class="bottomleft box padding-0-5 text-white black-transparent">Northern Lights</div>
       <div class="bottomleft box padding-0-5 text-white black-transparent">Northern Lights</div>
     </div>

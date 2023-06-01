@@ -7,8 +7,10 @@
       <div class="clean-modal-content content-600 card card-4 animate-top relative">
 
         <div class="box primary round-top">
-          <span @click="closeModal"
-                class="close-button fs-18 primary topright round-top-right text-white">&times;</span>
+          <button @click="closeModal"
+                class="close-button fs-18 primary topright round-top-right text-white">
+              <font-awesome-icon :icon="['fas', 'times']" />
+          </button>
           <h3 class="text-white">
 
             <slot name="header"></slot>

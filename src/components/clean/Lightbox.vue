@@ -2,8 +2,9 @@
   <div>
     <div v-show="lightboxOpened === true" class="gallery-modal black" :class="{'show': lightboxOpened === true }">
 
-      <button class="text-white white-transparent fs-24 hover-text-grey-20 padding-0-5 topright pointer"
-              title="Close Lightbox" @click="closeLightbox">&times;
+      <button class="text-white margin-top-0 white-transparent fs-24 hover-text-grey-20 padding-0-5 topright pointer"
+              title="Close Lightbox" @click="closeLightbox">
+          <font-awesome-icon :icon="['fas', 'times']" />
       </button>
 
       <div class="clean-modal-content content-1024">
@@ -19,9 +20,13 @@
             <div class="box relative">
               <p id="lightbox-caption-id" class="text-center"></p>
               <span class="middle hover-text-accent padding-0-5 large pointer" style="left:2%"
-                    @click="() => stepLightbox(-1)" title="Previous image">&#10094;</span>
+                    @click="() => stepLightbox(-1)" title="Previous image">
+                  <font-awesome-icon :icon="['fas', 'chevron-left']" />
+              </span>
               <span class="middle hover-text-accent padding-0-5 large pointer" style="left:98%"
-                    @click="() => stepLightbox(1)" title="Next image">&#10095;</span>
+                    @click="() => stepLightbox(1)" title="Next image">
+                  <font-awesome-icon :icon="['fas', 'chevron-right']" />
+              </span>
             </div>
 
             <div class="col s4">

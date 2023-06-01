@@ -5,6 +5,7 @@ button
 
 .button
     border: 1px solid $primary-light
+
     &:hover, &:focus
         background-color: white
 
@@ -34,6 +35,7 @@ button:hover,
 .button:hover
     background-color: $primary-dark
 
+
 .button.alt:hover
     background-color: white
 
@@ -56,6 +58,13 @@ button:disabled,
         cursor: initial
 
 
+button.active,
+.button.active
+    &:hover
+        background-color: $primary-light
+
+
+/* Action color buttons */
 button.primary,
 .button.primary
     color: white
@@ -208,14 +217,10 @@ button.white-button
         background-color: $black
         border-color: $gray-0
         color: $gray-0
+/* Action color buttons END */
 
 
-button.active,
-.button.active
-    &:hover
-        background-color: $primary-light
-
-
+/* Special buttons */
 .link-button
     background-color: transparent
     border-color: transparent
@@ -256,13 +261,48 @@ button.transparent
         color: white
 
 
-button.close-button,
-span.close-button
+/* span.close-button -> TODO: need to replace all spans with buttons! */
+button.close-button
+    width: auto
     margin-top: 0
+    margin-right: 0
     border: 1px solid transparent
+    background-color: transparent
+    color: $black
 
     &:hover
         background-color: rgba(0, 0, 0, 0.3)
+
+
+#close-btn
+    cursor: pointer
+
+
+button.pointer.darkmode-toggle
+    background-color: transparent
+    border: none
+    margin-top: 0
+
+
+button.logout-button
+    background-color: transparent
+    border: none
+    color: #C1354B
+    text-decoration: underline
+    margin: 0 0.5em
+    padding: 0 0.5em
+
+    &:hover, &:focus
+        border: none
+        color: $black
+        background-color: transparent
+
+.dark
+    button.logout-button
+        color: $primary-darkmode
+
+        &:hover
+            color: $white
 
 
 .button-square,
@@ -292,8 +332,10 @@ a.button-square
     @media screen and (max-width: $s-600)
         width: auto
         display: flex
+/* Special buttons END */
 
 
+/* Button group row, pagination buttons */
 .button-group, .pagination-group
     display: flex
     flex-direction: row
@@ -313,5 +355,5 @@ a.button-square
 
 .pagination-group
     column-gap: 0.25em
-
+/* Button group row, pagination buttons END */
 
