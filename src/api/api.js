@@ -1,11 +1,11 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import {state} from "../state/state";
+import {authStore} from "../store/authStore";
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
     // Get the token for an authorized request
-    const token = Cookies.get(state.token);
+    const token = Cookies.get(authStore.token);
 
     // set headers for all authenticated requests
     if (token) {

@@ -21,10 +21,8 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie';
-
 import axios from "axios";
-import {state, setState, getState} from "../../state/state";
+import {authStore} from "../../store/authStore";
 
 import Guest from "../../layout/Guest.vue";
 import Alert from "../../components/clean/Alert.vue";
@@ -37,6 +35,7 @@ export default {
     },
     data() {
         return {
+            authStore,
             password: '',
             username: '',
             alertMessage: '',
@@ -49,6 +48,7 @@ export default {
     props: {
         message: {
             type: String,
+            required: false,
         }
     },
 
@@ -58,17 +58,12 @@ export default {
 
 
     mounted() {
-        this.username = 'h8328tjb8iy9';
-        this.password = '$%zq5V@l9UJT^)epGEBP6g1d';
+        this.username = import.meta.env.VITE_USERNAME;
+        this.password = import.meta.env.VITE_PASSWORD;
         this.alertColor = '';
         this.alertHeading = '';
     },
     methods: {
-        onLoggedIn() {
-            this.$emit('onUserLoggedIn', true)
-        },
-
-
         initLogin() {
             const credentials = {
                 username: this.username,
@@ -78,23 +73,18 @@ export default {
 
             axios({
                 method: "POST",
-                url: state.restUrl + 'jwt-auth/v1/token',
+                url: authStore.restUrl + 'jwt-auth/v1/token',
                 data: JSON.stringify(credentials),
                 headers: {"Content-Type": "application/json"}
 
             }).then(response => {
                 if (200 === response.status) {
                     console.log(response);
-                    Cookies.set(state.token, response.data.token, {
-                        expires: 1, // 1 day expiration of token
-                        secure: true
-                    });
 
-
-                    setState('loggedIn', true);
-                    this.onLoggedIn();
+                    // log in the user
+                    authStore.login(response.data.token)
+                    // redirect to homepage
                     router.push({name: 'Home'});
-
                 }
             }).catch(error => {
                 this.alertMessage = error.message;
@@ -103,7 +93,7 @@ export default {
         },
 
         isShowAlert() {
-            return this.alertMessage !== '' || getState('message') !== '';
+            return this.alertMessage !== '' || authStore.message !== '';
         },
 
         setAlert() {
@@ -111,9 +101,9 @@ export default {
                 this.alertColor = 'danger';
                 return this.alertMessage;
 
-            } else if (state.message !== '') {
+            } else if (authStore.message !== '') {
                 this.alertColor = 'info';
-                return state.message;
+                return authStore.message;
 
             } else {
                 return '';

@@ -1,9 +1,9 @@
 <template>
     <div class="spa-container relative" :class="{ dark: this.darkModeOn === true}">
-        <Header :userLoggedIn="userLoggedIn" @darkmodechanged="onDarkModeChange" @onLogout="logout"/>
+        <Header @darkmodechanged="onDarkModeChange"/>
 
         <component :is="layout">
-            <router-view :layout.sync="layout" @onUserLoggedIn="onUserLoggedIn"/>
+            <router-view :layout.sync="layout"/>
         </component>
 
         <span v-if="showScrollToTopButton() === true"
@@ -12,7 +12,7 @@
               title="Toggle table of content"
               @click="scrollToTop"
         >
-        <font-awesome-icon :icon="['fas', 'chevron-up']" />
+        <font-awesome-icon :icon="['fas', 'chevron-up']"/>
     </span>
 
         <Footer/>
@@ -21,16 +21,14 @@
 
 
 <script>
+import {markRaw} from "vue";
 import {debounce} from "lodash";
-import Cookies from "js-cookie";
 
-import {isAuthenticated, setState, state} from "./state/state";
-import router from "./router";
+import {authStore} from "./store/authStore";
 
 import Guest from "./layout/Guest.vue";
 import Header from "./components/public/Header.vue";
 import Footer from "./components/public/Footer.vue";
-import {markRaw} from "vue";
 
 
 export default {
@@ -42,9 +40,9 @@ export default {
 
     data() {
         return {
+            authStore,
             layout: markRaw(Guest),
             darkModeOn: localStorage.getItem('darkMode') === 'true',
-            userLoggedIn: isAuthenticated(),
             scrollTop: 0,
             threshold: 800,
         }
@@ -75,10 +73,6 @@ export default {
             this.darkModeOn = val;
         },
 
-        onUserLoggedIn(val) {
-            this.userLoggedIn = val;
-        },
-
         // to the top
         scrollToTop() {
             this.scrollTop = 0;
@@ -95,24 +89,6 @@ export default {
             this.scrollTop = document.body.scrollTop;
             console.log(document.body.scrollTop);
         }, 300),
-
-
-        // Logout user (event emitted from Logout -> Header -> observed here)
-        logout(logoutUser) {
-            console.log(logoutUser);
-            if (logoutUser === true) {
-
-                // delete JWT token, set state
-                Cookies.remove(state.token, {secure: true});
-                setState('loggedIn', false);
-                setState('message', 'Successful logout.')
-                this.userLoggedIn = false;
-
-                // redirect to login page
-                router.push({name: 'Login'});
-            }
-
-        }
 
     },
 

@@ -3,7 +3,7 @@
     <div class="logout">
         <form @submit.prevent="onLogout">
             <button type="submit" class="logout-button button submit">
-                <font-awesome-icon :icon="['fas', 'sign-in-alt']" />
+                <font-awesome-icon :icon="['fas', 'sign-in-alt']"/>
                 Logout
             </button>
         </form>
@@ -12,21 +12,20 @@
 </template>
 
 <script>
-
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {authStore} from "../../store/authStore";
+
 export default {
     name: "Logout",
     components: {FontAwesomeIcon},
     methods: {
         onLogout() {
+            authStore.logout();
             this.$emit('onLogout', true)
         },
     },
 
-
 }
-
-
 </script>
 
 <style scoped lang="sass">
