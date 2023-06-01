@@ -5,8 +5,6 @@ import router from "../router";
 // Set state object with values that are changed programmatically
 export const authStore = reactive({
     loggedIn: false,
-    baseUrl: "https://www.gulacsiandras.hu/",
-    restUrl: "https://www.gulacsiandras.hu/wp-json/",
     token: "wp-token",
     siteName: '',
     siteDescription: '',
