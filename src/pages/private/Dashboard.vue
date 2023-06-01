@@ -4,10 +4,10 @@
 
         <div class="dashboard-container">
             <aside>
-                <Editor @onCreateOrUpdatePost="postCreatedOrUpdated($event)" :post-id="postIdForTheEditor"></Editor>
+                <Editor :key="postsStore.post"></Editor>
             </aside>
             <main>
-                <Posts :reload="postsChanged" @onPostEdit="getPostForEditor($event)"></Posts>
+                <Posts></Posts>
             </main>
 
         </div>
@@ -18,35 +18,20 @@
 <script>
 import Posts from "../../components/private/Posts.vue";
 import Editor from "../../components/private/Editor.vue";
-import {isEmpty} from "lodash";
+
+import {postsStore} from "../../store/postsStore";
 
 export default {
     name: "Dashboard",
     data() {
         return {
-            postIdForTheEditor: null,
+            postsStore,
             postsChanged: false,
         }
     },
     components: {
         Posts,
         Editor
-    },
-    methods: {
-        getPostForEditor($event) {
-            this.postIdForTheEditor = $event;
-        },
-
-        postCreatedOrUpdated($event) {
-            this.postsChanged = $event;
-        }
-    },
-
-    watch: {
-        postIdForTheEditor: function (newPostId) {
-            this.postIdForTheEditor = !isEmpty(newPostId) ? newPostId : this.postIdForTheEditor;
-
-        }
     },
 }
 </script>

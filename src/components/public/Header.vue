@@ -15,24 +15,24 @@
                 <!-- DESKTOP MENU -->
                 <nav ref="mainMenu" id="main-menu">
                     <router-link class="nav-link" :to="{ name: 'Home' }">
-                        <font-awesome-icon :icon="['fas', 'home']" />
+                        <font-awesome-icon :icon="['fas', 'home']"/>
                         Home
                     </router-link>
 
                     <router-link class="nav-link" :to="{ name: 'Hello' }">
-                        <font-awesome-icon :icon="['fas', 'user']" />
+                        <font-awesome-icon :icon="['fas', 'user']"/>
                         Hello
                     </router-link>
 
                     <router-link class="nav-link" :to="{ name: 'Dashboard' }">
-                        <font-awesome-icon :icon="['fas', 'dashboard']" />
+                        <font-awesome-icon :icon="['fas', 'dashboard']"/>
                         Dashboard
                     </router-link>
 
-                    <Logout v-if="userLoggedIn === true" @onLogout="onLogout"/>
+                    <Logout v-if="authStore.loggedIn === true" @onLogout="onLogout" />
 
                     <router-link v-else class="nav-link" :to="{ name: 'Login' }">
-                        <font-awesome-icon :icon="['fas', 'user']" />
+                        <font-awesome-icon :icon="['fas', 'user']"/>
                         Login
                     </router-link>
                 </nav>
@@ -65,7 +65,7 @@
                             aria-expanded="false"
                     >
                         <span class="sr-only">Open main menu</span>
-                        <font-awesome-icon :icon="sidenav ? 'fa-solid fa-times' : 'fa-solid fa-bars'" />
+                        <font-awesome-icon :icon="sidenav ? 'fa-solid fa-times' : 'fa-solid fa-bars'"/>
                     </button>
 
                     <div class="sidenav relative"
@@ -77,7 +77,7 @@
                         <a href="javascript:void(0)"
                            @click="closeOffcanvasMenu"
                            class="close-btn fs-18 absolute topright padding-0-5">
-                            <font-awesome-icon :icon="['fas', 'times']" />
+                            <font-awesome-icon :icon="['fas', 'times']"/>
                         </a>
 
                         <div ref="mobileMenu" id="mobile-menu">
@@ -85,24 +85,24 @@
                             <!-- MOBILE MENU -->
                             <nav id="main-menu">
                                 <router-link class="nav-link" :to="{ name: 'Home' }">
-                                    <font-awesome-icon :icon="['fas', 'home']" />
+                                    <font-awesome-icon :icon="['fas', 'home']"/>
                                     Home
                                 </router-link>
 
                                 <router-link class="nav-link" :to="{ name: 'Hello' }">
-                                    <font-awesome-icon :icon="['fas', 'user']" />
+                                    <font-awesome-icon :icon="['fas', 'user']"/>
                                     Hello
                                 </router-link>
 
                                 <router-link class="nav-link" :to="{ name: 'Dashboard' }">
-                                    <font-awesome-icon :icon="['fas', 'dashboard']" />
+                                    <font-awesome-icon :icon="['fas', 'dashboard']"/>
                                     Dashboard
                                 </router-link>
 
-                                <Logout v-if="userLoggedIn === true" @onLogout="onLogout"/>
+                                <Logout v-if="authStore.loggedIn === true" @onLogout="onLogout"/>
 
                                 <router-link v-else class="nav-link" :to="{ name: 'Login' }">
-                                    <font-awesome-icon :icon="['fas', 'user']" />
+                                    <font-awesome-icon :icon="['fas', 'user']"/>
                                     Login
                                 </router-link>
                             </nav>
@@ -123,8 +123,10 @@
 
 <script>
 import clickOutside from "./../../directives/clickOutside";
+import {authStore} from "../../store/authStore";
+
 import Logout from "../private/Logout.vue";
-import {isAuthenticated} from "../../state/state";
+
 
 export default {
     name: "Header",
@@ -134,13 +136,10 @@ export default {
     directives: {
         clickOutside,
     },
-    props: {
-        userLoggedIn: {
-            required: true,
-        }
-    },
+
     data() {
         return {
+            authStore,
             sidenav: false,
             clickedOutside: false,
             darkMode: localStorage.getItem('darkMode') === 'true',
@@ -153,8 +152,6 @@ export default {
             console.log('Setting dark/light mode')
             localStorage.setItem('darkMode', $val);
         },
-
-
     },
 
 
@@ -166,9 +163,6 @@ export default {
 
 
     methods: {
-
-        // imported from state
-        isAuthenticated,
 
         /* Offcanvas menu toggle */
         toggleOffcanvasMenu() {
@@ -213,9 +207,7 @@ export default {
             return this.darkMode === true;
         },
 
-        onLogout(value) {
-            this.$emit('onLogout', value);
-            this.$forceUpdate();
+        onLogout() {
             this.closeOffcanvasMenu();
         },
 
