@@ -24,6 +24,11 @@
                         Hello
                     </router-link>
 
+                    <router-link class="nav-link" :to="{ name: 'Dashboard' }">
+                        <font-awesome-icon :icon="['fas', 'dashboard']" />
+                        Dashboard
+                    </router-link>
+
                     <Logout v-if="userLoggedIn === true" @onLogout="onLogout"/>
 
                     <router-link v-else class="nav-link" :to="{ name: 'Login' }">
@@ -87,6 +92,11 @@
                                 <router-link class="nav-link" :to="{ name: 'Hello' }">
                                     <font-awesome-icon :icon="['fas', 'user']" />
                                     Hello
+                                </router-link>
+
+                                <router-link class="nav-link" :to="{ name: 'Dashboard' }">
+                                    <font-awesome-icon :icon="['fas', 'dashboard']" />
+                                    Dashboard
                                 </router-link>
 
                                 <Logout v-if="userLoggedIn === true" @onLogout="onLogout"/>

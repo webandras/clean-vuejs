@@ -1,7 +1,9 @@
 import {createRouter, createWebHistory} from "vue-router";
-import Home from "../pages/public/Home.vue";
-import Hello from "../pages/public/Hello.vue";
+
+import Home from "../pages/private/Home.vue";
+import Hello from "../pages/private/Hello.vue";
 import Login from "../pages/public/Login.vue";
+import Dashboard from "../pages/private/Dashboard.vue";
 
 import {isAuthenticated, setState} from "../state/state";
 
@@ -23,6 +25,12 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: Hello,
+    },
+
+    {
+        path: "/dashboard",
+        name: "Dashboard",
+        component: Dashboard,
     },
 ];
 const router = createRouter({
@@ -46,7 +54,7 @@ router.beforeEach(async (to, from) => {
     // when logged in redirect from login page to home
     if (isAuthenticated() && to.name === 'Login') {
         // redirect the logged-in user to the home page
-        return {name: 'Home'}
+        return {name: 'Dashboard'}
     }
 })
 

@@ -22,14 +22,14 @@ import {
     faMinus,
     faTrash,
     faPencilAlt,
-    faQuestionCircle
+    faQuestionCircle, faDashboard
 } from '@fortawesome/free-solid-svg-icons';
 
 /* add icons to the library */
 library.add(
     faUserSecret, faSearch, faSignInAlt, faSignOutAlt, faHome, faUser, faBars, faTimes, faCaretDown,
     faCaretRight, faChevronUp, faChevronLeft, faChevronRight, faAngleDoubleLeft, faAngleDoubleRight,
-    faPlus, faMinus, faTrash, faPencilAlt, faQuestionCircle
+    faPlus, faMinus, faTrash, faPencilAlt, faQuestionCircle, faDashboard
 );
 
 export default library;

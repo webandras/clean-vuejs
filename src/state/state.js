@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 // Set state object with values that are changed programmatically
 const state = {
     loggedIn: false,
+    baseUrl: "https://www.gulacsiandras.hu/",
     restUrl: "https://www.gulacsiandras.hu/wp-json/",
     token: "wp-token",
     siteName: 'XXXXXXX',
