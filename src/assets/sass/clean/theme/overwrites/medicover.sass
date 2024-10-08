@@ -1,0 +1,195 @@
+// General
+h1
+    line-height: 1.1
+    font-weight: 700
+    font-family: $serif
+
+
+h2, h3, h4, h5, h6
+    line-height: 1.2
+    font-weight: 700
+    font-family: $sans
+
+
+// Header
+header.page-header
+    background-color: $primary-dark !important
+
+    .header-content
+        .logo
+            position: relative
+
+            a
+                img
+                    height: 55px
+
+        #main-menu-offcanvas-toggle
+            color: $gray-20
+            border-color: $gray-20
+            border-width: 2px
+
+            &:hover, &:focus
+                color: $white
+                border-color: $white
+                background-color: transparent
+                border-width: 2px
+
+        #event-link-mobile-menu
+            @media screen and (min-width: 1024px)
+                display: none
+
+    .user-dropdown-menu
+        a:not(.dropdown-item)
+            color: white
+            text-decoration: underline
+
+            &.active
+                color: $pale-light
+                font-weight: bold
+
+
+    .main-navigation
+        #main-menu
+            a:not(.dropdown-item)
+                color: $gray-10
+
+                &:hover
+                    color: white
+
+                &.active
+                    color: $pale-light
+                    font-weight: bold
+
+
+// Sidenav menu
+.sidenav
+    background-color: #F2F2F2
+
+    #main-menu
+        a:not(.dropdown-item)
+            color: $primary-dark !important
+
+            &.active
+                color: #333 !important
+                font-weight: bold
+
+
+// Footer
+footer.page-footer.public-footer
+    border-top: 2px solid $gray-80
+    text-align: center
+    background: rgb(20, 20, 20)
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(20, 20, 20, 1) 50%)
+
+    .footer-content
+        nav
+            margin-bottom: 3em
+
+            a
+                padding: 0 0.5em
+
+            a.active
+                display: inline
+                font-weight: bold
+                color: $pale-light
+
+        .logo
+            a
+                justify-content: center
+
+
+// Frontpage
+
+.frontpage
+    width: 100%
+
+    .public-content
+        max-width: 100% !important
+        padding-left: 0 !important
+        padding-right: 0 !important
+
+        .main-container
+            width: 95% !important
+            padding-left: 0 !important
+            padding-right: 0 !important
+
+
+@media screen and (max-width: $mobile)
+    .next-prev-navigation.bar
+        .button, button
+            display: block
+            margin-top: 0
+
+
+// Other
+.filemanager-container
+    width: 100%
+    height: 550px
+    overflow: hidden
+    border: none
+
+.post-date
+    font-size: 18px
+    font-weight: 500
+    line-height: 150%
+    letter-spacing: 1px
+
+
+.dark
+    button,
+    .button
+
+        &.primary
+            &:hover
+                color: white
+
+            &.alt
+                color: white
+
+                background-color: transparent
+                &:hover, &:focus
+                    border-color: white
+
+
+        &.secondary
+            color: black
+
+            &:hover
+                color: white
+
+            &.alt
+                background-color: transparent
+
+                &:hover, &:focus
+                    color: white
+
+
+.post-header
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    column-gap: 1em
+
+.a2a_buttons__small
+    a
+        margin-left: 0
+
+        img
+            width: 24px
+            height: 24px
+
+.osm-embed
+    border: 1px solid black
+
+.main-container
+    .toc
+        max-width: 320px
+
+@media screen and (max-width: $s-1023)
+    .main-container
+        flex-direction: column-reverse
+        row-gap: 2em
+
+        .toc
+            max-width: 100%
+            margin-right: 0

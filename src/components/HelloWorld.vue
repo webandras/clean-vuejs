@@ -1,21 +1,17 @@
 <script setup>
 defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
+    msg: {
+        type: String,
+        required: true
+    }
 })
 </script>
 
 <template>
-  <div class="panel success white">
-    <h1 class="">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
-  </div>
+    <div class="panel success white">
+        <h1>{{ msg }}</h1>
+        <h3>The Vue.js frontend for my REST API written in Rust (using Rocket + Diesel).</h3>
+    </div>
 </template>
 
 <style scoped>

@@ -1,0 +1,50 @@
+a
+    color: $link
+    cursor: pointer
+    text-decoration: underline
+    background-color: transparent
+
+    &:hover
+        color: $gray-80
+        // outline-width: 0
+
+    &:active
+        // outline-width: 0
+
+    /*&:focus
+        outline: none*/
+
+    /*&:focus-visible
+        outline: solid -webkit-focus-ring-color
+        outline-width: 1.5px
+        outline-offset: 0
+        outline-color: inherit*/
+
+    /*&:visited
+        color: rebeccapurple*/
+
+    &.no-underline
+        text-decoration: none !important
+
+    &.nav-link
+        &.active
+            font-weight: 700
+            background-color: $gray-20
+
+
+.link
+    font-size: 1rem
+    font-weight: 400
+    background-color: transparent
+    border-color: transparent
+    color: $primary-light
+    text-decoration: underline
+
+    &:hover
+        background-color: transparent
+        border-color: transparent
+        color: $primary-dark
+
+
+.pointer
+    cursor: pointer

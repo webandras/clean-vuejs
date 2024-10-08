@@ -1,0 +1,47 @@
+table
+    border-radius: 0.5rem
+    margin-top: 1em
+    margin-bottom: 1em
+    border-spacing: 0
+    border-collapse: collapse
+    width: 100%
+    display: table
+
+    td:hover
+        cursor: auto
+
+    th, td
+        border: 1px solid #aaa
+        padding: 0.7em
+
+    th
+        font-size: $fs-16
+        font-weight: bold
+        text-align: left
+
+    thead
+        height: 2em
+        background-color: white
+        border-bottom: 2px solid $gray-60
+
+        tr
+            height: 2em
+
+    tbody
+        tr
+            height: 2em
+
+            &:hover,
+            &:nth-child(odd):hover
+                background-color: #fdfdea
+
+            &:nth-child(odd)
+                background-color: #F2F2F2
+
+            td
+                color: $text
+
+
+    @media screen and (max-width: $s-600)
+        width: 100%
+        font-size: $fs-14

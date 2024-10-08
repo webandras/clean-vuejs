@@ -1,4 +1,4 @@
-import './assets/clean/main.sass';
+import './assets/sass/main.sass';
 
 import {createApp} from 'vue';
 /* import font awesome icon component */

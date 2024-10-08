@@ -2,7 +2,6 @@
 const clickOutside = {
     mounted: function mounted(el, binding, vnode) {
         el.clickOutsideEvent = function (event) {
-
             //  check that click was outside the el and his children
             if (!(el == event.target || el.contains(event.target))) {
                 // vnode.context[binding.expression](event);

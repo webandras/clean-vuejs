@@ -1,35 +1,31 @@
 <template>
-    <div class="spa-container relative" :class="{ dark: this.darkModeOn === true}">
+    <section class="spa-container relative" :class="{ dark: this.darkModeOn === true}">
         <Header @darkmodechanged="onDarkModeChange"/>
 
         <component :is="layout">
             <router-view :layout.sync="layout"/>
         </component>
 
-        <span v-if="showScrollToTopButton() === true"
-              class="light-gray pointer scroll-to-top-button padding-0-5 round"
-              role="button" aria-label="To the top button"
-              title="Toggle table of content"
-              @click="scrollToTop"
+        <button v-if="showScrollToTopButton() === true"
+                class="light-gray pointer scroll-to-top-button padding-0-5 round"
+                role="button" aria-label="To the top button"
+                title="Toggle table of content"
+                @click="scrollToTop"
         >
-        <font-awesome-icon :icon="['fas', 'chevron-up']"/>
-    </span>
+            <font-awesome-icon :icon="['fas', 'chevron-up']"/>
+        </button>
 
         <Footer/>
-    </div>
+    </section>
 </template>
 
 
 <script>
 import {markRaw} from "vue";
 import {debounce} from "lodash";
-
-import {authStore} from "./store/authStore";
-
 import Guest from "./layout/Guest.vue";
-import Header from "./components/public/Header.vue";
-import Footer from "./components/public/Footer.vue";
-
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
     name: "App",
@@ -40,7 +36,6 @@ export default {
 
     data() {
         return {
-            authStore,
             layout: markRaw(Guest),
             darkModeOn: localStorage.getItem('darkMode') === 'true',
             scrollTop: 0,
@@ -48,11 +43,9 @@ export default {
         }
     },
 
-
     created() {
         this.$emit('update:layout', Guest);
     },
-
 
     beforeMount() {
         // remove previous
@@ -64,7 +57,6 @@ export default {
         window.addEventListener("wheel",
             this.setScrollToTop);
     },
-
 
     methods: {
         // change in dark/light mode (event emitted from Header -> observed here)
@@ -91,7 +83,6 @@ export default {
         }, 300),
 
     },
-
 
 }
 </script>

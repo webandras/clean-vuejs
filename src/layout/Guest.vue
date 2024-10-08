@@ -1,13 +1,12 @@
 <template>
-  <div class="container">
-    <slot></slot>
-  </div>
-
+    <section class="container">
+        <slot></slot>
+    </section>
 </template>
 
 <script>
 export default {
-  name: "Guest"
+    name: "Guest"
 }
 </script>
 

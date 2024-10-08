@@ -1,7 +1,8 @@
 <template>
     <div v-if="openAlert === true"
-         class="panel relative" :class="[color !== '' ? panelClasses : '']">
-        <button v-if="showCloseButton === true" @click="hideAlert()" class="close-button fs-18 white-transparent topright">
+         class="alert relative" :class="[color !== '' ? panelClasses : '']">
+        <button v-if="showCloseButton === true" @click="hideAlert()"
+                class="close-button fs-18 white-transparent topright">
             <font-awesome-icon :icon="['fas', 'times']"/>
         </button>
 
