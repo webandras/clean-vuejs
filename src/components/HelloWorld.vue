@@ -8,10 +8,11 @@ defineProps({
 </script>
 
 <template>
-    <div class="panel success white">
-        <h1>{{ msg }}</h1>
-        <h3>The Vue.js frontend for my REST API written in Rust (using Rocket + Diesel).</h3>
+    <div class="card padding-1 margin-bottom-2">
+        <h1 class="margin-top-bottom-0 h3 text-muted">The Vue.js frontend for my REST API written in Rust (using Rocket + Diesel + PostgreSQL).</h1>
     </div>
+
+    <h3 class="uppercase">{{ msg }}</h3>
 </template>
 
 <style scoped>

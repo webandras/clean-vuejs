@@ -1,100 +1,96 @@
 <template>
     <header class="page-header">
-        <div class="header-content">
-            <div class="logo">
-                <a href="/" class="brand">
-                    <img alt="Vue logo"
-                         class="logo"
-                         src="/src/assets/images/logo.png"/>
-                    Clean Vue
-                </a>
-            </div>
+        <section class="header__container">
+            <section class="header-content">
+                <div class="logo">
+                    <a href="/" class="brand">
+                        <img alt="Vue logo" src="/src/assets/images/logo.png"/>
+                        Clean Vue
+                    </a>
+                </div>
+                <section class="main-navigation">
+                    <!-- DESKTOP MENU -->
+                    <nav ref="mainMenu" id="main-menu">
+                        <router-link class="nav-link" :to="{ name: 'Home' }">
+                            <font-awesome-icon :icon="['fas', 'home']"/>
+                            Home
+                        </router-link>
 
-            <div class="main-navigation">
+                        <router-link class="nav-link" :to="{ name: 'Blog' }">
+                            <font-awesome-icon :icon="['fas', 'user']"/>
+                            Blog
+                        </router-link>
+                    </nav>
 
-                <!-- DESKTOP MENU -->
-                <nav ref="mainMenu" id="main-menu">
-                    <router-link class="nav-link" :to="{ name: 'Home' }">
-                        <font-awesome-icon :icon="['fas', 'home']"/>
-                        Home
-                    </router-link>
-
-                    <router-link class="nav-link" :to="{ name: 'Blog' }">
-                        <font-awesome-icon :icon="['fas', 'user']"/>
-                        Blog
-                    </router-link>
-                </nav>
-
-                <!-- DARK/LIGHT MODE SWITCHER -->
-                <button v-if="isDarkModeOn() === true"
-                        class="pointer darkmode-toggle"
-                        rel="button"
-                        @click="toggleDarkMode"
-                        :title="isDarkModeOn() ? 'light' : 'dark'"
-                >🔆
-                </button>
-
-                <button v-else
-                        class="pointer darkmode-toggle"
-                        rel="button"
-                        @click="toggleDarkMode"
-                        :title="isDarkModeOn() ? 'light' : 'dark'"
-                >🌒
-                </button>
-
-                <!-- HAMBURGER MENU -->
-                <div>
-                    <button @click="toggleOffcanvasMenu"
-                            id="hamburger-menu-button"
-                            class="primary alt margin-top-0 margin-left-0-5"
-                            data-collapse-toggle="navbar-default"
-                            type="button"
-                            aria-controls="navbar-default"
-                            aria-expanded="false"
-                    >
-                        <span class="sr-only">Open main menu</span>
-                        <font-awesome-icon :icon="sidenav ? 'fa-solid fa-times' : 'fa-solid fa-bars'"/>
+                    <!-- DARK/LIGHT MODE SWITCHER -->
+                    <button v-if="isDarkModeOn() === true"
+                            class="darkmode-toggle margin-top-0"
+                            rel="button"
+                            @click="toggleDarkMode"
+                            :title="isDarkModeOn() ? 'light' : 'dark'"
+                    >🔆
                     </button>
 
-                    <div class="sidenav relative"
-                         tabindex="-1"
-                         ref="offcanvas"
-                         id="main-menu-offcanvas"
-                         v-click-outside="closeOnOutsideClick"
-                    >
-                        <a href="javascript:void(0)"
-                           @click="closeOffcanvasMenu"
-                           class="close-btn fs-18 absolute topright padding-0-5">
-                            <font-awesome-icon :icon="['fas', 'times']"/>
-                        </a>
+                    <button v-else
+                            class="darkmode-toggle margin-top-0"
+                            rel="button"
+                            @click="toggleDarkMode"
+                            :title="isDarkModeOn() ? 'light' : 'dark'"
+                    >🌒
+                    </button>
 
-                        <div ref="mobileMenu" id="mobile-menu">
+                    <!-- HAMBURGER MENU -->
+                    <div>
+                        <button @click="toggleOffcanvasMenu"
+                                id="main-menu-offcanvas-toggle"
+                                class="primary alt margin-top-0 margin-left-0-5"
+                                data-collapse-toggle="navbar-default"
+                                type="button"
+                                aria-controls="navbar-default"
+                                aria-expanded="false"
+                        >
+                            <span class="sr-only">Open main menu</span>
+                            <font-awesome-icon :icon="sidenav ? 'fa-solid fa-times' : 'fa-solid fa-bars'"/>
+                        </button>
 
-                            <!-- MOBILE MENU -->
-                            <nav id="main-menu">
-                                <router-link class="nav-link" :to="{ name: 'Home' }">
-                                    <font-awesome-icon :icon="['fas', 'home']"/>
-                                    Home
-                                </router-link>
+                        <div class="sidenav relative"
+                             tabindex="-1"
+                             ref="offcanvas"
+                             id="main-menu-offcanvas"
+                             v-click-outside="closeOnOutsideClick"
+                        >
+                            <a href="javascript:void(0)"
+                               @click="closeOffcanvasMenu"
+                               class="close-btn fs-18 absolute topright padding-0-5">
+                                <font-awesome-icon :icon="['fas', 'times']"/>
+                            </a>
 
-                                <router-link class="nav-link" :to="{ name: 'Blog' }">
-                                    <font-awesome-icon :icon="['fas', 'user']"/>
-                                    Blog
-                                </router-link>
-                            </nav>
+                            <div ref="mobileMenu" id="mobile-menu">
+
+                                <!-- MOBILE MENU -->
+                                <nav id="main-menu">
+                                    <router-link class="nav-link" :to="{ name: 'Home' }">
+                                        <font-awesome-icon :icon="['fas', 'home']"/>
+                                        Home
+                                    </router-link>
+
+                                    <router-link class="nav-link" :to="{ name: 'Blog' }">
+                                        <font-awesome-icon :icon="['fas', 'user']"/>
+                                        Blog
+                                    </router-link>
+                                </nav>
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                </div>
+                </section>
 
-            </div>
-
-        </div>
+            </section>
+        </section>
     </header>
-
-
 </template>
 
 <script>

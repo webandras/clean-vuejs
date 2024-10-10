@@ -1,9 +1,10 @@
 <template>
-    <article class="post card white padding-0-5">
+    <article class="post card white padding-1">
         <h2 class="margin-top-0 fs-24">
             <RouterLink :to="{ name: 'Blogpost', params: { id: post.id }}">{{ post.title }}</RouterLink>
         </h2>
         <div v-html="post.body"></div>
+        <hr>
         <div class="button-group">
             <button @click="() => loadPost(post.id)" class="primary fs-12">
                 <font-awesome-icon :icon="['fas', 'pencil-alt']"/>

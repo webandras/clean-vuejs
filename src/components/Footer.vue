@@ -4,7 +4,6 @@
             <nav>
                 <a href="/" class="">Home</a>
             </nav>
-
             <small>&copy; 2023 Gulácsi András. All rights reserved!</small>
         </div>
     </footer>
