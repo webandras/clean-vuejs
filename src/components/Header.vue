@@ -114,7 +114,6 @@ export default {
     watch: {
         // update localstorage if dark mode changes
         darkMode: function ($val) {
-            console.log('Setting dark/light mode')
             localStorage.setItem('darkMode', $val);
         },
     },
@@ -125,12 +124,9 @@ export default {
         this.clickedOutside = false;
     },
 
-
     methods: {
-
         /* Offcanvas menu toggle */
         toggleOffcanvasMenu() {
-            console.log('toggled menu...')
             if (this.sidenav === true) {
                 this.closeOffcanvasMenu();
             } else {

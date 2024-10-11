@@ -102,7 +102,6 @@ export default {
         },
 
         hide(event) {
-            console.log(event)
             const btn = event.target;
             if (btn.parentNode) {
                 btn.parentNode.style.display = 'none';
