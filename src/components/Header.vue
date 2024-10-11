@@ -5,7 +5,7 @@
                 <div class="logo">
                     <a href="/" class="brand">
                         <img alt="Vue logo" src="/src/assets/images/logo.png"/>
-                        Clean Vue
+                        <span>Clean Vue</span>
                     </a>
                 </div>
                 <section class="main-navigation">

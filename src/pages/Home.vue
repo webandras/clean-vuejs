@@ -1206,34 +1206,6 @@ export default {
             threshold: 100,
         }
     },
-
-    mounted() {
-        window.addEventListener("wheel",
-            this.setScrollToTop);
-    },
-    beforeMount() {
-        window.removeEventListener("wheel", this.setScrollToTop);
-    },
-
-
-    methods: {
-        scrollToTop() {
-            this.scrollTop = 0;
-            document.body.scrollTop = 0;
-        },
-
-        showScrollToTopButton() {
-            return this.scrollTop > this.threshold
-        },
-
-        setScrollToTop: debounce(function () {
-            this.scrollTop = document.body.scrollTop;
-            console.log(document.body.scrollTop);
-        }, 300),
-
-    },
-
-
 }
 </script>
 

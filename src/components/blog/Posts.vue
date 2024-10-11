@@ -1,5 +1,8 @@
 <template>
     <div class="posts">
+        <RouterLink :to="{ name: 'BlogEditor' }" class="button primary">Add new</RouterLink>
+        <hr>
+
         <div class="grid">
             <Post v-for="post in postsStore.posts" :key="post.id" :post="post"></Post>
         </div>
@@ -26,6 +29,7 @@ export default {
 
     mounted() {
         postsStore.getPosts();
+        postsStore.clearPost();
     },
 }
 </script>

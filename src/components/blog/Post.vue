@@ -3,7 +3,7 @@
         <h2 class="margin-top-0 fs-24">
             <RouterLink :to="{ name: 'Blogpost', params: { id: post.id }}">{{ post.title }}</RouterLink>
         </h2>
-        <div v-html="post.body"></div>
+        <p>{{ $filters.excerpt(post.body, 120) }}</p>
         <hr>
         <div class="button-group">
             <button @click="() => loadPost(post.id)" class="primary fs-12">
@@ -19,9 +19,8 @@
 </template>
 
 <script>
-import {BASE_URL} from "../../constants/constants";
-import {postsStore} from "../../store/postsStore";
 import router from "@/router";
+import {postsStore} from "@/store/postsStore";
 
 export default {
     name: "Post",
@@ -30,16 +29,11 @@ export default {
             required: true,
         }
     },
+
     data() {
         return {
             postsStore
         }
-    },
-
-    computed: {
-        BASE_URL() {
-            return BASE_URL
-        },
     },
 
     methods: {
@@ -52,7 +46,6 @@ export default {
             postsStore.post = this.$props.post
             postsStore.deletePost();
         }
-
     }
 }
 </script>

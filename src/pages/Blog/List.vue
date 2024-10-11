@@ -1,13 +1,18 @@
 <template>
-    <main>
-        <HelloWorld msg="My blog"/>
+    <main class="content-800 margin-left-right-auto">
+        <Alert v-if="postsStore.message !== ''" :showCloseButton="false" :color="postsStore.color">
+            {{ postsStore.message }}
+        </Alert>
+
+        <Introduction msg="My blog"></Introduction>
+
         <Posts></Posts>
     </main>
 </template>
 
 <script>
 import Alert from "../../components/clean/Alert.vue";
-import HelloWorld from './../../components/HelloWorld.vue'
+import Introduction from './../../components/Introduction.vue'
 import Posts from "./../../components/blog/Posts.vue";
 import Editor from "./../../components/blog/Editor.vue";
 import {postsStore} from "@/store/postsStore";
@@ -23,7 +28,7 @@ export default {
         Editor,
         Posts,
         Alert,
-        HelloWorld,
+        Introduction,
     },
 }
 </script>

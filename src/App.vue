@@ -2,8 +2,8 @@
     <section class="spa-container relative" :class="{ dark: this.darkModeOn === true}">
         <Header @darkmodechanged="onDarkModeChange"/>
 
-        <component :is="layout">
-            <router-view :layout.sync="layout"/>
+        <component :is="this.$route.meta.layout || 'div'">
+            <router-view />
         </component>
 
         <button v-if="showScrollToTopButton() === true"
@@ -21,9 +21,7 @@
 
 
 <script>
-import {markRaw} from "vue";
 import {debounce} from "lodash";
-import Guest from "./layout/Guest.vue";
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 
@@ -36,15 +34,10 @@ export default {
 
     data() {
         return {
-            layout: markRaw(Guest),
             darkModeOn: localStorage.getItem('darkMode') === 'true',
             scrollTop: 0,
             threshold: 800,
         }
-    },
-
-    created() {
-        this.$emit('update:layout', Guest);
     },
 
     beforeMount() {
@@ -68,7 +61,7 @@ export default {
         // to the top
         scrollToTop() {
             this.scrollTop = 0;
-            document.body.scrollTop = 0;
+            window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
         },
 
         // only show the button if scrolled over the threshold
@@ -78,8 +71,7 @@ export default {
 
         // delay invoking the method (only invokes the last callback after the timeout to have less function calls)
         setScrollToTop: debounce(function () {
-            this.scrollTop = document.body.scrollTop;
-            console.log(document.body.scrollTop);
+            this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         }, 300),
 
     },

@@ -1,6 +1,6 @@
 import {reactive} from "vue";
 import axios from "../api/api";
-import {REST_URL} from "../constants/constants";
+import {REST_URL} from "@/constants/constants";
 
 // Set state object with values that are changed programmatically
 export const postsStore = reactive({
@@ -11,6 +11,11 @@ export const postsStore = reactive({
         color: 'success',
 
         setNotification(message = 'Post saved successfully!', color = 'success') {
+            this.message = message;
+            this.color = color;
+        },
+
+        resetNotification(message = '', color = 'success') {
             this.message = message;
             this.color = color;
         },

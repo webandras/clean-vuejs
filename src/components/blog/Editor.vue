@@ -1,5 +1,7 @@
 <template>
-    <section class="editor content-600">
+    <section class="editor content-600 margin-left-right-auto">
+        <RouterLink :to="{ name: 'Blog' }">&laquo Go back</RouterLink>
+
         <h3 v-if="id !== null">Edit Post</h3>
         <h3 v-else>Add New Post</h3>
 
@@ -7,34 +9,39 @@
             {{ postsStore.message }}
         </Alert>
 
-        <form @submit.prevent="createOrUpdatePost">
+        <form @submit.prevent="createOrUpdatePost" class="margin-bottom-3">
             <input type="text" v-model="title" name="title" placeholder="Enter title here" class="margin-bottom-1">
 
-            <QuillEditor :key="id" v-model:content="body" contentType="html" theme="snow"></QuillEditor>
+            <QuillEditor :key="quillId" v-model:content="body" contentType="html" theme="snow"></QuillEditor>
+
+            <label for="genre">Genre</label>
+            <input id="genre" type="text" v-model="genre" name="genre">
+
+            <label for="published" class="margin-bottom-1">
+                <input id="published" type="checkbox" v-model="published" name="published">Is it public?
+            </label>
+
+            <hr>
 
             <div class="button-group margin-top-1">
                 <button type="submit" class="primary">Save</button>
-                <button @click="clear" type="button" class="primary alt">Clear all</button>
+                <button @click="cancel" type="button" class="primary alt">Cancel</button>
             </div>
         </form>
-        <hr>
+
     </section>
 </template>
 
 <script>
 import {QuillEditor} from '@vueup/vue-quill'
-import {postsStore} from "../../store/postsStore";
+import router from "@/router";
+import {postsStore} from "@/store/postsStore";
+import Modal from "@/components/clean/Modal.vue";
 import Alert from "../clean/Alert.vue";
 import '../../assets/css/vue-quill.snow.css';
-import Modal from "@/components/clean/Modal.vue";
 
 export default {
     name: "Editor",
-    props: {
-        postId: {
-            required: false,
-        }
-    },
     components: {
         Modal,
         Alert,
@@ -43,34 +50,37 @@ export default {
 
     data() {
         return {
+            quillId: 0,
             postsStore,
             id: null,
             title: '',
             body: '',
-            genre: "test",
-            published: true,
+            genre: '',
+            published: false,
         }
     },
 
     mounted() {
         this.initialize();
-        window.scrollTo(0, 50);
     },
 
     methods: {
-        clear() {
-            postsStore.clearPost();
-            this.initialize();
+        cancel() {
+            router.push({ name: 'Blog'})
         },
 
         initialize() {
+            this.quillId++;
             this.id = postsStore.post?.id || null;
             this.title = postsStore.post?.title || '';
             this.body = postsStore.post?.body || '';
+            this.genre = postsStore.post?.genre || '';
+            this.published = postsStore.post?.published || false;
+            postsStore.resetNotification();
         },
 
         createOrUpdatePost() {
-            if (!this.title || !this.body) {
+            if (!this.title || !this.body || !this.genre ) {
                 postsStore.message = 'All fields are required';
                 postsStore.color = 'warning';
                 return;
@@ -79,18 +89,15 @@ export default {
             const post = {
                 title: this.title,
                 body: this.body,
-                genre: "teszt",
-                published: true
+                genre: this.genre,
+                published: this.published
             };
 
             // Create or update post
-            if (!this.id) {
-                postsStore.createPost(post);
-                this.initialize();
-            } else {
-                postsStore.updatePost(post, this.id);
-                this.initialize();
-            }
+            !this.id ? postsStore.createPost(post) : postsStore.updatePost(post, this.id);
+
+            this.initialize();
+            router.push({ name: 'Blog'})
         },
 
     }

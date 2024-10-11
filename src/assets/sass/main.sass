@@ -1,19 +1,8 @@
 @import 'clean/clean'
-
 @import 'custom/general'
-//@import 'custom/admin'
 @import 'custom/public'
 @import 'custom/header'
 @import 'custom/footer'
-//@import 'custom/error_page'
-//@import 'custom/categories'
-//@import 'custom/calendar'
-//@import 'custom/event'
-//@import 'custom/post'
-//@import 'custom/blog'
-//@import 'custom/social'
-//@import 'custom/documents'
-//@import 'custom/gallery'
 
 header
     #mobile-menu
@@ -21,3 +10,37 @@ header
             a
                 i.fa
                     margin-left: 0
+
+.ql-container
+    font-size: 1rem !important
+
+
+@media screen and (max-width: 550px)
+    .ql-toolbar.ql-snow .ql-formats button
+        width: auto !important
+
+
+.dark
+    .ql-container.ql-snow
+        background: $bg-content
+    .ql-toolbar.ql-snow
+        background: $bg-dark
+
+        button:hover
+            .ql-stroke
+                stroke: $gray-80
+
+    .ql-snow .ql-stroke
+        stroke: $gray-20
+
+    .ql-snow .ql-picker
+        color: $gray-20
+
+    .ql-snow.ql-toolbar .ql-picker-label:hover
+        background: black
+
+    .ql-toolbar.ql-snow .ql-picker-options
+        background: $bg-content
+
+    .ql-snow.ql-toolbar .ql-picker-item:hover
+        background: black
