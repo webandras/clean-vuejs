@@ -15,7 +15,7 @@ export default {
         const elem = document.createElement('div');
         elem.innerHTML = value;
         let newValue = elem.textContent || elem.innerText;
-        newValue = newValue.slice(0, length-3)
+        newValue = newValue.slice(0, length - 3)
         return newValue + '...';
     }
 }

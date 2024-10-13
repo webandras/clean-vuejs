@@ -25,7 +25,7 @@
 
             <div class="button-group margin-top-1">
                 <button type="submit" class="primary">Save</button>
-                <button @click="cancel" type="button" class="primary alt">Cancel</button>
+                <button @click="back" type="button" class="primary alt">Cancel</button>
             </div>
         </form>
 
@@ -65,8 +65,8 @@ export default {
     },
 
     methods: {
-        cancel() {
-            router.push({ name: 'Blog'})
+        back() {
+            router.push({name: 'Blog'})
         },
 
         initialize() {
@@ -80,7 +80,7 @@ export default {
         },
 
         createOrUpdatePost() {
-            if (!this.title || !this.body || !this.genre ) {
+            if (!this.title || !this.body || !this.genre) {
                 postsStore.message = 'All fields are required';
                 postsStore.color = 'warning';
                 return;
@@ -97,7 +97,7 @@ export default {
             !this.id ? postsStore.createPost(post) : postsStore.updatePost(post, this.id);
 
             this.initialize();
-            router.push({ name: 'Blog'})
+            this.back();
         },
 
     }

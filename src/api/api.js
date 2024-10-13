@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// Add a request interceptor
 axios.interceptors.request.use(function (config) {
     config.headers['Content-Type'] = 'application/json';
     return config;

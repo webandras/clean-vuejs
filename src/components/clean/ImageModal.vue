@@ -1,16 +1,17 @@
 <template>
     <div>
         <img class="hover-opacity thumbnail-third pointer"
-             src="/src/assets/images/img_nature.jpg"
+             src="images/img_nature.jpg"
+             role="button"
              alt="Nature"
              @click="openModal">
 
-        <div v-show="modal === true" class="clean-modal" :class="{'show': modal}" @click="closeModal">
+        <div v-show="modal === true" class="modal" :class="{'show': modal}" @click="closeModal">
             <button @click="closeModal" class="close-button gray-20 fs-18 topright">
                 <font-awesome-icon :icon="['fas', 'times']"/>
             </button>
-            <div class="clean-modal-content content-960 card card-4 animate-zoom">
-                <img src="/src/assets/images/img_nature_wide.jpg" alt="Nature">
+            <div class="modal-content content-960 card card-4 animate-zoom">
+                <img src="images/img_nature_wide.jpg" alt="Nature">
             </div>
         </div>
     </div>

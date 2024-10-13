@@ -27,17 +27,17 @@ export default {
     props: [
         'dropdown'
     ],
+
     directives: {
         clickOutside,
     },
+
     data() {
         return {
             openDropdown: false,
         }
     },
-    mounted() {
 
-    },
     methods: {
         toggleDropdown() {
             this.openDropdown = !this.openDropdown;
@@ -47,7 +47,6 @@ export default {
             this.openDropdown = false;
         }
     },
-
 }
 
 </script>

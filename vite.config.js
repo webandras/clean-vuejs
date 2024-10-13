@@ -9,9 +9,7 @@ export default defineConfig({
     css: {
         preprocessorOptions: {
             sass: {
-                additionalData: `
-
-        `
+                additionalData: ``
             }
         }
     },

@@ -1,7 +1,7 @@
 <template>
     <article class="card white padding-1">
         <h2 class="margin-top-bottom-0 fs-24">{{ postsStore.post?.title }}</h2>
-        <small class="badge text-muted border margin-top-0-5">{{ postsStore.post?.genre}}</small>
+        <small class="badge text-muted border margin-top-0-5">{{ postsStore.post?.genre }}</small>
         <p class="fs-14 italic">{{ $filters.date(postsStore.post?.created_at) }}</p>
         <div v-html="postsStore.post?.body"></div>
     </article>

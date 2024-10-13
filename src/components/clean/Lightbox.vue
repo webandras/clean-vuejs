@@ -1,33 +1,29 @@
 <template>
     <div>
         <div v-show="lightboxOpened === true" class="gallery-modal black" :class="{'show': lightboxOpened === true }">
-
             <button
-                class="text-white margin-top-0 white-transparent fs-24 hover-text-grey-20 padding-0-5 topright pointer"
+                class="text-white white-transparent fs-18 hover-text-grey-20 padding-0-5 topright margin-top-0"
+                style="line-height: 1;"
                 title="Close Lightbox" @click="closeLightbox">
                 <font-awesome-icon :icon="['fas', 'times']"/>
             </button>
 
-            <div class="clean-modal-content content-1024">
-
-                <div class="clean-content">
+            <div class="modal-content content-1024">
+                <div class="content-960 margin-left-right-auto">
                     <img class="lightbox-item" src="/src/assets/images/img_nature_wide.jpg"
                          alt="Nature">
                     <img class="lightbox-item" src="/src/assets/images/img_snow_wide.jpg"
                          alt="Snow">
                     <img class="lightbox-item" src="/src/assets/images/img_mountains_wide.jpg"
                          alt="Mountains">
+
                     <div class="row black center">
                         <div class="box relative">
                             <p id="lightbox-caption-id" class="text-center"></p>
                             <span class="middle hover-text-accent padding-0-5 large pointer" style="left:2%"
-                                  @click="() => stepLightbox(-1)" title="Previous image">
-                  <font-awesome-icon :icon="['fas', 'chevron-left']"/>
-              </span>
+                                  @click="() => stepLightbox(-1)" title="Previous image">&#10094;</span>
                             <span class="middle hover-text-accent padding-0-5 large pointer" style="left:98%"
-                                  @click="() => stepLightbox(1)" title="Next image">
-                  <font-awesome-icon :icon="['fas', 'chevron-right']"/>
-              </span>
+                                  @click="() => stepLightbox(1)" title="Next image">&#10095;</span>
                         </div>
 
                         <div class="col s4">
@@ -46,7 +42,7 @@
                                  @click="() => currentLightbox(3)" alt="Mountains and fjords">
                         </div>
                     </div> <!-- End row -->
-                </div> <!-- End clean-content -->
+                </div> <!-- End content -->
 
             </div> <!-- End modal content -->
         </div> <!-- End modal -->

@@ -1,13 +1,14 @@
 <template>
-    <div v-if="openAlert === true"
-         class="alert relative" :class="[color !== '' ? panelClasses : '']">
-        <button v-if="showCloseButton === true" @click="hideAlert()"
-                class="close-button fs-18 white-transparent topright">
+    <div v-if="openAlert === true" class="alert relative" role="alert" :class="[color !== '' ? alertClasses : '']">
+        <button v-if="showCloseButton === true" @click="hideAlert()" class="close-button topright">
             <font-awesome-icon :icon="['fas', 'times']"/>
         </button>
 
-        <div class="h5 bold">{{ heading }}</div>
-        <p class="margin-0">
+        <div class="h5 bold text-black">
+            <i class="fa-solid fa-circle-exclamation margin-right-0-5" :class="color !== '' ? alertIcons : ''"></i>
+            {{ heading }}
+        </div>
+        <p class="alert-message">
             <slot></slot>
         </p>
 
@@ -23,19 +24,17 @@ export default {
         'color',
         'heading'
     ],
+
     data() {
         return {
             openAlert: true,
-            panelStyles: [],
         }
     },
+
     mounted() {
-        this.panelStyles['danger'] = 'danger text-red-dark border border-red-dark';
-        this.panelStyles['warning'] = 'danger text-red-dark border border-red-dark';
-        this.panelStyles['success'] = 'danger text-red-dark border border-red-dark';
-        this.panelStyles['info'] = 'danger text-red-dark border border-red-dark';
         this.openAlert = true;
     },
+
     methods: {
         showAlert() {
             this.openAlert = true;
@@ -47,18 +46,33 @@ export default {
     },
 
     computed: {
-        panelClasses() {
+        alertClasses() {
             switch (this.$props.color) {
                 case 'danger':
-                    return 'danger text-red-dark border border-red-dark';
+                    return 'danger';
                 case 'warning':
-                    return 'warning text-orange-dark border border-orange-dark';
+                    return 'warning';
                 case 'success':
-                    return 'success text-green-dark border border-green-dark';
+                    return 'success';
                 case 'info':
-                    return 'info text-cyan-dark border border-cyan-dark';
+                    return 'info';
                 default:
-                    return 'info text-cyan-dark border border-cyan-dark';
+                    return 'info';
+            }
+        },
+
+        alertIcons() {
+            switch (this.$props.color) {
+                case 'danger':
+                    return 'fa-circle-exclamation';
+                case 'warning':
+                    return 'fa-triangle-exclamation';
+                case 'success':
+                    return 'fa-circle-check';
+                case 'info':
+                    return 'fa-circle-info';
+                default:
+                    return 'fa-circle-info';
             }
         }
     }

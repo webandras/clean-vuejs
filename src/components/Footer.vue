@@ -7,7 +7,6 @@
             <small>&copy; 2023 Gulácsi András. All rights reserved!</small>
         </div>
     </footer>
-
 </template>
 
 <script>

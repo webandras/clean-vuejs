@@ -1,8 +1,22 @@
 <template>
-    <div v-for="item in contents" :key="item.id">
-        <button @click="toggleAccordion(item.id)" class="block left-align">{{ item.title }}
+    <div v-for="item in contents" :key="item.id" class="accordion">
+        <button v-if="active === item.id" @click="toggleAccordion(item.id)" :aria-controls="item.id"
+                type="button" class="fs-16 block left-align accordion-button">
+            <span>{{ item.title }}</span>
+            <i class="fa-solid fa-minus"></i>
         </button>
-        <div :id="item.id" class="hide accordion-item" v-html="item.data">
+        <button v-else @click="toggleAccordion(item.id)" :aria-controls="item.id"
+                type="button" class="fs-16 block left-align">
+            <span>{{ item.title }}</span>
+            <i class="fa-solid fa-plus"></i>
+        </button>
+
+        <div v-if="active === item.id" :id="item.id" class="hide accordion-item show"
+             :aria-expanded="isAccordionContentExpanded(item.id)">
+            <div class="box" v-html="item.data"></div>
+        </div>
+        <div v-else :id="item.id" class="hide accordion-item" :aria-expanded="isAccordionContentExpanded(item.id)">
+            <div class="box" v-html="item.data"></div>
         </div>
     </div>
 </template>
@@ -11,7 +25,8 @@
 export default {
     name: 'Accordion',
     props: [
-        'dropdown'
+        'contents',
+        'active'
     ],
     data() {
         return {
@@ -20,53 +35,19 @@ export default {
             toggleClass: '',
             headerActiveClass: '',
             accordionItemClass: '',
-            contents: [
-                {
-                    id: 'accordionOne',
-                    title: 'Open Section 1',
-                    data: '<div class="box">' +
-                        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut\n' +
-                        '          labore\n' +
-                        '          et\n' +
-                        '          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi\n' +
-                        '          ut\n' +
-                        '          aliquip ex\n' +
-                        '          ea commodo consequat.</p>' +
-                        '</div>'
-                },
-                {
-                    id: 'accordionTwo',
-                    title: 'Open Section 2',
-                    data: '<div class="bar-block">' +
-                        '<a class="bar-item" href="javascript:void(0)">Link 1</a>\n' +
-                        '      <a class="bar-item" href="javascript:void(0)">Link 2</a>\n' +
-                        '      <a class="bar-item" href="javascript:void(0)">Link 3</a>' +
-                        '</div>'
-                },
-                {
-                    id: 'accordionThree',
-                    title: 'Open Section 3',
-                    data: '<div class="box black">\n' +
-                        '        <p>Accordion with Images:</p>\n' +
-                        '        <img src="./src/assets/images/img_snowtops.jpg"' +
-                        '             class="animate-zoom thumbnail-third" alt="French Alps">\n' +
-                        '        <p>French Alps</p>\n' +
-                        '      </div>'
-                },
-            ]
         }
     },
 
     mounted() {
-        this.accordionId = '';
+        this.accordionId = this.active;
         this.sameClick = false;
         this.toggleClass = "show";
         this.headerActiveClass = "accordion-button";
         this.accordionItemClass = "accordion-item";
     },
+
     methods: {
         toggleAccordion(accordionId = '') {
-
             // if we click on the same button twice, hide the accordion content
             if (this.accordionId === accordionId) {
                 this.accordionId = accordionId;
@@ -74,12 +55,28 @@ export default {
 
                 // Hide it when shown
                 if (this.sameClick === false) {
+                    console.log(x)
                     x.classList.remove(this.toggleClass);
+                    // remove active state
                     x.previousElementSibling.classList.remove(this.headerActiveClass);
+
+                    // change back icon to plus
+                    const icon = x.previousElementSibling.getElementsByTagName('i')[0]
+                    if (icon) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    }
                     this.sameClick = true;
-                } else { // Show it when hidden
+                } else {
+                    // Show it when hidden
                     x.classList.add(this.toggleClass);
                     x.previousElementSibling.classList.add(this.headerActiveClass);
+                    // change icon to minus
+                    const icon = x.previousElementSibling.getElementsByTagName('i')[0]
+                    if (icon) {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    }
                     this.sameClick = false;
                 }
 
@@ -98,6 +95,12 @@ export default {
                     }
                     if (accordionItem.previousElementSibling.classList.contains(this.headerActiveClass)) {
                         accordionItem.previousElementSibling.classList.remove(this.headerActiveClass);
+                        // change back icon to plus
+                        const icon = accordionItem.previousElementSibling.getElementsByTagName('i')[0]
+                        if (icon) {
+                            icon.classList.remove('fa-minus');
+                            icon.classList.add('fa-plus');
+                        }
                     }
                 }
 
@@ -105,6 +108,16 @@ export default {
                 if (x.classList) {
                     x.classList.toggle(this.toggleClass);
                     x.previousElementSibling.classList.toggle(this.headerActiveClass);
+                    const icon = x.previousElementSibling.getElementsByTagName('i')[0];
+
+                    // change icon to minus
+                    if (x.previousElementSibling.classList.contains(this.headerActiveClass)) {
+                        if (icon) {
+                            icon.classList.remove('fa-plus');
+                            icon.classList.add('fa-minus');
+                        }
+                    }
+
                 } else {
                     // Fallback for IE9 and earlier
                     const toggleClassString = " " + this.toggleClass;
@@ -115,11 +128,14 @@ export default {
                     }
                 }
 
-
             }
-        }
-    },
+        },
 
+        isAccordionContentExpanded(accordionId) {
+            return this.accordionId === accordionId && this.sameClick === false
+        }
+
+    },
 }
 
 </script>
