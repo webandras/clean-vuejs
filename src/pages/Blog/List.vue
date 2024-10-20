@@ -1,6 +1,6 @@
 <template>
     <main class="content-800 margin-left-right-auto">
-        <Alert v-if="postsStore.message !== ''" :showCloseButton="false" :color="postsStore.color">
+        <Alert v-if="postsStore.message !== ''" :showCloseButton="false" :color="postsStore.color" :heading="postsStore.message">
             {{ postsStore.message }}
         </Alert>
 

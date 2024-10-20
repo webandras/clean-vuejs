@@ -21,6 +21,11 @@
                 <input id="published" type="checkbox" v-model="published" name="published">Is it public?
             </label>
 
+            <select v-model="authorId" name="author_id">
+                <option :value="null" :selected="authorId === null">Choose the author...</option>
+                <option v-for="author in authorsStore.authors" :value="author.id" :selected="author.id === authorId" >{{ author && (author.firstname + ' ' + author.lastname )}}</option>
+            </select>
+
             <hr>
 
             <div class="button-group margin-top-1">
@@ -36,6 +41,7 @@
 import {QuillEditor} from '@vueup/vue-quill'
 import router from "@/router";
 import {postsStore} from "@/store/postsStore";
+import {authorsStore} from "@/store/authorsStore";
 import Modal from "@/components/clean/Modal.vue";
 import Alert from "../clean/Alert.vue";
 import '../../assets/css/vue-quill.snow.css';
@@ -52,11 +58,13 @@ export default {
         return {
             quillId: 0,
             postsStore,
+            authorsStore,
             id: null,
             title: '',
             body: '',
             genre: '',
             published: false,
+            authorId: null,
         }
     },
 
@@ -76,6 +84,8 @@ export default {
             this.body = postsStore.post?.body || '';
             this.genre = postsStore.post?.genre || '';
             this.published = postsStore.post?.published || false;
+            this.authorId = postsStore.post?.author?.id || null;
+            this.authorsStore.getAuthors();
             postsStore.resetNotification();
         },
 
@@ -90,8 +100,11 @@ export default {
                 title: this.title,
                 body: this.body,
                 genre: this.genre,
-                published: this.published
+                published: this.published,
+                author_id: this.authorId
             };
+
+            console.log(post)
 
             // Create or update post
             !this.id ? postsStore.createPost(post) : postsStore.updatePost(post, this.id);

@@ -2,7 +2,7 @@
     <div>
         <button @click="openModal" class="black-button padding-1">Click to Open Modal</button>
 
-        <div v-show="modal === true" class="modal" :class="{'show': modal}">
+        <dialog v-show="modal === true" class="modal" :class="{'show': modal}">
 
             <div class="modal-content content-600 card card-4 animate-top relative">
 
@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-        </div>
+        </dialog>
     </div>
 </template>
 

@@ -27,22 +27,23 @@ export const postsStore = reactive({
     getPosts() {
         axios.get(REST_URL + 'posts')
             .then(({data: posts}) => {
-                this.posts = posts.body.Posts;
+                this.posts = posts.body.posts;
+                console.log(this.posts)
             })
     },
 
     // Get one post by id
     getPost(id) {
-        axios.get(REST_URL + "post/" + id)
+        axios.get(REST_URL + "posts/" + id)
             .then(response => {
                 console.log(response)
-                this.post = response.data.body.Post;
+                this.post = response.data.body.post;
             }).catch(error => console.error(error));
     },
 
     createPost(post) {
         const request = {
-            method: "post", url: REST_URL + "post", data: post,
+            method: "post", url: REST_URL + "posts", data: post,
         };
 
         // Save post
@@ -66,7 +67,7 @@ export const postsStore = reactive({
         }
 
         const request = {
-            method: "put", url: REST_URL + "post/" + id, data: post,
+            method: "put", url: REST_URL + "posts/" + id, data: post,
         };
 
         axios(request)
@@ -88,7 +89,7 @@ export const postsStore = reactive({
 
         if (true === confirm) {
             axios({
-                method: "delete", url: REST_URL + "post/" + this.post.id,
+                method: "delete", url: REST_URL + "posts/" + this.post.id,
             })
                 .then(response => {
                     this.setNotification('Deleted the post!');
